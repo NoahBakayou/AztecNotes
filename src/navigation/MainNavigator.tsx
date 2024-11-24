@@ -24,7 +24,7 @@ const MainNavigator: React.FC = () => {
 
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: '#6200EE',
+          tabBarActiveTintColor: '#ee0000',
           tabBarInactiveTintColor: 'gray',
           headerShown: false,
         })}

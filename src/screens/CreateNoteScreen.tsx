@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 const CreateNoteScreen: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Create a New Note Here!</Text>
+      <Text style={styles.text}>Record Lecture     </Text>
     </View>
   );
 };
