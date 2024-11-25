@@ -1,30 +1,36 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Save a value to storage
-export const saveToStorage = async (key: string, value: any) => {
+// Keys for storage
+const STORAGE_KEYS = {
+  NOTES: 'NOTES', // Key for storing notes
+};
+
+// Save notes to AsyncStorage
+export const saveNotes = async (notes: string[]): Promise<void> => {
   try {
-    await AsyncStorage.setItem(key, JSON.stringify(value));
-  } catch (e) {
-    console.error('Failed to save to storage:', e);
+    const jsonValue = JSON.stringify(notes);
+    await AsyncStorage.setItem(STORAGE_KEYS.NOTES, jsonValue);
+  } catch (error) {
+    console.error('Error saving notes:', error);
   }
 };
 
-// Get a value from storage
-export const getFromStorage = async (key: string) => {
+// Get notes from AsyncStorage
+export const getNotes = async (): Promise<string[] | null> => {
   try {
-    const value = await AsyncStorage.getItem(key);
-    return value ? JSON.parse(value) : null;
-  } catch (e) {
-    console.error('Failed to retrieve from storage:', e);
+    const jsonValue = await AsyncStorage.getItem(STORAGE_KEYS.NOTES);
+    return jsonValue != null ? JSON.parse(jsonValue) : [];
+  } catch (error) {
+    console.error('Error retrieving notes:', error);
     return null;
   }
 };
 
-// Remove a value from storage
-export const removeFromStorage = async (key: string) => {
+// Delete all notes from AsyncStorage
+export const clearNotes = async (): Promise<void> => {
   try {
-    await AsyncStorage.removeItem(key);
-  } catch (e) {
-    console.error('Failed to remove from storage:', e);
+    await AsyncStorage.removeItem(STORAGE_KEYS.NOTES);
+  } catch (error) {
+    console.error('Error clearing notes:', error);
   }
 };
